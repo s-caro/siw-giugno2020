@@ -1,0 +1,150 @@
+Casi d’uso per User e Admin
+
+SEZIONE USER
+
+Caso d'uso "SignUp":
+-l'utente che accede per la prima volta alla piattaforma utilizza il modulo di registrazione per registrarsi inserendo: username, password, nome e cognome
+-il sistema verifica che le informazioni inserite rispettino i parametri stabiliti per ogni campo e che lo username sia univoco
+-il sistema assegna al nuovo utente un identificatore univoco e lo salva nella base di dati
+-il sistema chiede all'utente di accedere
+
+Caso d'uso "Login":
+-l'utente già registrato alla piattaforma utilizza il modulo di login per accedere alla propria pagina
+-l'utente inserisce il proprio username e la password
+-il sistema lo identifica e visualizza l'homepage dell'utente
+
+Caso d'uso "Visualizza Profilo":
+-l'utente autenticato dalla propria home seleziona "profilo"
+-il sistema mostra username, nome, cognome e ruolo dell'utente
+
+Caso d'uso "Modifica Profilo":
+-l'utente autenticato dal proprio profilo sceglie l’attività "modifica"
+-il sistema mostra una pagina dove inserire i nuovi dati
+-l'utente inserisce nome, cognome e password
+-l'utente conferma i dati inseriti
+-il sistema aggiorna i dati dell'utente nella memoria
+
+
+SEZIONE ADMIN
+
+Caso d’uso “Cancella Utente”
+-l’admin sceglie l’attività “cancella utente”
+-il sistema mostra l'elenco di tutti gli utenti registrati
+-l'admin seleziona l'attività "cancella" relativa ad un utente
+-il sistema cancella l’utente selezionato dal database
+-il sistema mostra l'elenco di tutti gli utenti registrati
+
+Caso d’uso “Cancella Progetto”
+-l’admin autenticato sceglie l’attività “cancella progetto”
+-l’admin autenticato con il login può selezionare e visualizzare tutti i progetti di un utente
+-il sistema cancella il progetto selezionato dall’admin
+-dopodichè il sistema mostra i progetti rimanenti
+
+
+
+Casi d’uso Progetto
+
+Caso d’uso “Crea Progetto”:
+-l’utente autenticato sceglie l’attività “crea progetto”
+-il sistema mostra un modulo dove inserire i dati del nuovo progetto
+-l’utente inserisce nome, descrizione del progetto
+-l’utente conferma i dati inseriti
+-il sistema verifica la correttezza dei dati inseriti
+-il sistema salva il progetto nel database
+-il sistema mostra nome, descrizione del progetto
+
+Caso d’uso “Visualizza Progetti”
+-l’utente autenticato sceglie l’attività “i miei progetti”
+-il sistema mostra l’elenco dei progetti creati dall’utente
+
+Caso d’uso “Visualizza Progetti Condivisi”
+-l’utente autenticato sceglie l’attività “progetti condivisi con me”
+-il sistema mostra l’elenco dei progetti condivisi con l’utente
+
+Caso d’uso “Modifica Progetto”
+-l'utente autenticato dalla pagina di un proprio progetto sceglie l’attività "modifica progetto"
+-il sistema mostra una pagina dove inserire i nuovi dati
+-l'utente inserisce nome, descrizione
+-l'utente conferma i dati inseriti
+-il sistema aggiorna i dati del progetto in memoria
+
+Caso d’uso “Condividi Progetto”
+-l’utente autenticato dalla pagina di un proprio progetto sceglie l’attività “condividi progetto”
+-il sistema mostra una pagina dove inserire lo username dell’utente con cui condividere il progetto
+-l’utente autenticato inserisce lo username del nuovo membro
+-il sistema verifica la correttezza dei dati
+-il sistema aggiorna le informazioni relative al progetto
+
+Caso d’uso “Cancella Progetto”
+-l’utente autenticato sceglie l’operazione di “cancellazione progetto” dalla pagina di un proprio progetto
+-il sistema cancella il progetto selezionato dall’utente
+-il sistema mostra l'elenco dei progetti dell'utente
+
+
+
+Casi d’uso Task
+
+Caso d’uso “Crea Task”
+-l’utente autenticato sceglie l’attività “crea task” dalla pagina di un proprio progetto
+-il sistema mostra un modulo dove inserire i dati del nuovo task
+-l’utente inserisce nome e descrizione del task
+-l’utente conferma l’inserimento
+-il sistema verifica la correttezza dei dati inseriti
+-il sistema salva il task nel database
+
+Caso d’uso “Modifica Task”
+-l'utente autenticato sceglie l’attività "modifica task"
+-il sistema mostra un modulo dove inserire i nuovi dati
+-l'utente inserisce nome, descrizione del task
+-l'utente conferma l'inserimento
+-il sistema aggiorna i dati del task nel database
+
+Caso d’uso “Cancella Task”
+-l’utente autenticato sceglie l’attività “cancella task”
+-il sistema cancella il task selezionato dal database
+
+Caso d’uso “Assegna Task ad un Utente”
+-l’utente autenticato sceglie l’attività  “assegna task ad un utente”
+-il sistema mostra un modulo dove inserire lo username
+-l’utente inserisce lo username di un membro del progetto
+-il sistema verifica la correttezza dei dati
+-il sistema aggiorna i dati del task in memoria
+
+Caso d’uso “Visualizza Task”
+-l’utente autenticato seleziona un task tra quelli presenti in un progetto
+-il sistema mostra i dati relativi al task selezionato
+
+
+Casi d’uso Tag
+
+Caso d’uso “Aggiunta Tag al progetto”
+-l'utente autenticato sceglie l'attività "aggiungi tag" dal pagina del progetto
+-il sistema mostra un modulo dove inserire i dati del nuovo tag
+-l'utente inserisce nome, colore e descrizione del tag
+-il sistema verifica la correttezza dei dati
+-il sistema salva il tag nel database
+
+Caso d’uso “Visualizza Tag”
+-l'utente autenticato selezione un tag dal progetto
+-il sistema mostra i dati del tag selezionato
+
+Caso d'uso "Aggiungi Tag a Task"
+-l'utente autenticato sceglie l'attività "aggiungi tag a task"
+-il sistema mostra l'elenco dei tag relativi al progetto a cui appartiene il task
+-l'utente seleziona il tag dall'elenco
+-il sistema salva le modifiche del task nel database
+
+Caso d'uso "Cancella Tag"
+-l'utente autenticato sceglie l'attività "cancella tag"
+-il sistema cancella il tag selezionato dal database
+
+
+Casi d’uso Commento
+
+Caso d’uso “Crea Commento
+-l’utente autenticato sceglie l’attività “aggiungi commento”
+-il sistema mostra una pagina con un modello in cui inserire il commento
+-l’utente inserisce il testo del commento
+-l’utente conferma l’inserimento
+-il sistema verifica la correttezza del testo inserito
+-il sistema salva il commento inserito nel database
