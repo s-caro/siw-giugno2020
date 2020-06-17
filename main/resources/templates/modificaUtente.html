@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.progetto})">
+</head>
+<body>
+<header>
+</header>
+	<h1>Modifica Utente</h1>
+
+	<div>
+		<form th:action="@{/modifica/utenteFatta}" method="POST" class="form1">	
+			<table>
+			<tr>
+				<td><label th:text="#{password.registraUtente}">Password</label></td>
+				<td><input type="password" placeholder="PASSWORD" 
+				th:field="${credentialsForm.password}"/></td>
+				<td th:if="${#fields.hasErrors('credentialsForm.password')}"
+					th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td><label th:text="#{nome.registraUtente}">Nome</label></td>
+				<td><input type="text" placeholder="NOME" 
+				th:field="${userForm.nome}"/></td>
+				<td th:if="${#fields.hasErrors('userForm.nome')}"
+					th:errors="${userForm.nome}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td><label th:text="#{cognome.registraUtente}">Cognome</label></td>
+				<td><input type="text" placeholder="COGNOME" 
+				th:field="${userForm.cognome}"/></td>
+				<td th:if="${#fields.hasErrors('userForm.cognome')}"
+					th:errors="${userForm.cognome}" th:style="'color:red'"></td>
+			</tr>
+				<tr>
+					<td><button class="myButton" type="submit">Modifica</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

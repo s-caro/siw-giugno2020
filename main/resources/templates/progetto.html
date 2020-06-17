@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.progetto})">
+
+</head>
+<body>
+	<div>
+	<header>
+	</header>
+	<h1 th:text="#{title.progetto}"></h1>
+		<div class="div2">
+			<table>
+				<tr>
+					<td><h3 th:text="#{header.nomeProgetto}">Nome progetto</h3></td>
+					<td><h4 th:text=${progetto.nome}>nome</h4></td>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{header.descrizioneProgetto}">Descrizione progetto</h3></td>
+					<td><h4 th:text=${progetto.descrizione}>descrizione</h4></td>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{header.dataProgetto}">Data creazione progetto</h3></td>
+					<td><h4 th:text=${progetto.dataInizio}>dataCreazione</h4></td>
+				</tr>
+			</table>
+			<table>
+				<thead>
+				<tr>
+					<th><h3 th:text="#{header.membriProgetto}"></h3><th>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{nome.infoUtente}"></h3></td>
+					<td><h3 th:text="#{cognome.infoUtente}"></h3></td>
+				</tr>
+			</thead>
+			<tbody th:if="${membri.size() >= 0}">
+				<tr th:each="membro : ${membri}">
+					<td th:text="${membro.nome}"></td>
+					<td th:text="${membro.cognome}"></td>
+				</tr>
+				<tr>
+					<td><a href="aggiungiMembro.html" th:href="@{'/aggiungiMembro/'+${progetto.id}}" th:text="#{header.aggiungiMembro}">Aggiungi un utente al tuo progetto</a></td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
+		<div class="div2">
+			<table>
+				<thead>
+					<tr>
+						<td><h3>Task</h3></td>
+						<th><h3 th:text="#{task.completato}">Completato</h3></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="task : ${progetto.task}">
+						<td>-<a th:href="@{'/task' + '/' + ${task.id}}" th:text="${task.nome}">Task</a></td>
+						<td th:if="${task.completato}" class="t1"><input type="checkbox" id="scales" name="scales" checked onclick="return false"></td>
+						<td th:unless="${task.completato}" class="t1"><input type="checkbox" id="scales" name="scales" onclick="return false"></td>
+					</tr>
+					<tr>
+						<td><a th:href="@{'/progetto/task/aggiungi/' + ${progetto.id}}">Aggiungi Task</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<thead>
+					<tr>
+						<th><h3>Tag</h3></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="tag : ${progetto.tag}">
+						<td>-<a th:href="@{'/tag' + '/' + ${tag.id} + '/' + ${progetto.id}}" th:text="${tag.nome}">Tag</a></td>
+					</tr>
+					<tr>
+						<td><a th:href="@{'/progetto/tag/aggiungi/' + ${progetto.id}}" th:text="#{header.aggiungiTag}">Aggiungi Tag</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="div2">
+			<div>
+				<a th:href="@{'/progetto/modifica/' + ${progetto.id}}" th:text="#{change.progetto}">modifica</a>
+			</div>
+			<div>
+				<footer>
+					<a href="/progetti" th:text="#{fondo.progetto}">Progetti</a>
+				</footer>
+			</div>
+			<div>
+				<form method="POST" th:action="@{/progetto/{id}/delete(id=${progetto.id})}">
+					<button class="myButton" type="submit" name="submit" value="cancella" th:text="#{header.cancellaProgetto}">Elimina progetto</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

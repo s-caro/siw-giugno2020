@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.registraUtente})">
+
+</head>
+<body>
+	<div style="margin-top: 10%;">
+		<h1 th:text="#{header.registraUtente}">Registra un nuovo Utente</h1>
+	</div>
+	<div class="div1">
+		<form th:action="@{/utente/registrati}" method="POST" class="table1">
+			<table>
+				<tr>
+					<td><label th:text="#{username.registraUtente}">Username</label></td>
+					<td><input type="text" placeholder="USERNAME" required 
+					th:field="${credentialsForm.username}"/></td>
+					<td th:if="${#fields.hasErrors('credentialsForm.username')}"
+						th:errors="${credentialsForm.username}" th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td><label th:text="#{password.registraUtente}">Password</label></td>
+					<td><input type="password" placeholder="PASSWORD" 
+					th:field="${credentialsForm.password}"/></td>
+					<td th:if="${#fields.hasErrors('credentialsForm.password')}"
+						th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td><label th:text="#{nome.registraUtente}">Nome</label></td>
+					<td><input type="text" placeholder="NOME" 
+					th:field="${userForm.nome}"/></td>
+					<td th:if="${#fields.hasErrors('userForm.nome')}"
+						th:errors="${userForm.nome}" th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td><label th:text="#{cognome.registraUtente}">Cognome</label></td>
+					<td><input type="text" placeholder="COGNOME" 
+					th:field="${userForm.cognome}"/></td>
+					<td th:if="${#fields.hasErrors('userForm.cognome')}"
+						th:errors="${userForm.cognome}" th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="t1">
+						<button class="myButton" type="submit" th:text="#{button.registraUtente}" >Registrati</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

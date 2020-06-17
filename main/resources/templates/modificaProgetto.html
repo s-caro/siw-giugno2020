@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.progetto})">
+</head>
+<body>
+<header>
+</header>
+	<h1>Modifica Progetto</h1>
+
+	<div>
+		<form th:action="@{'/progetto/modifiche/'+ ${idProgetto}}" method="POST" th:object="${progettoNuovo}" class="form1">	
+			<table>
+				<tr>
+					<td th:text="#{nome.nuovoProgetto}">Nome:</td>
+					<td><input type="text" required th:field="*{nome}" placeholder="nome"/></td>
+					<td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" th:style="'color:red'"></td>				
+				</tr>
+				<tr>
+					<td th:text="#{descrizione.nuovoProgetto}">Descrizione:</td>
+					<td><input type="text" required th:field="*{descrizione}" placeholder="descrizione"/></td>
+				</tr>	
+				<tr>
+					<td><button class="myButton" type="submit" th:text="#{change.progetto}">Modifica</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

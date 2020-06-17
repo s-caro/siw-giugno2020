@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.tuttiUtenti})">
+</head>
+<body>
+<header>
+</header>
+	<h1 th:text="#{pageTitle.tuttiUtenti}">Utenti</h1>
+	<div>
+		<table class="table2">
+			<thead>
+				<tr>
+					<th th:text="#{username.tuttiUtenti}">Username</th>
+					<th th:text="#{nome.tuttiUtenti}">Nome</th>
+					<th th:text="#{cognome.tuttiUtenti}">Cognome</th>
+					<th th:text="#{cancella.tuttiUtenti}">Cancella</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each ="credentials : ${credentialsList}">
+					<td th:text="${credentials.username}"></td>
+					<td th:text="${credentials.utente.nome}"></td>
+					<td th:text="${credentials.utente.cognome}"></td>
+					<td>
+						<form method="POST" th:action="@{/admin/utenti/{username}/delete(username=${credentials.username})}">
+							<button class="myButton" type="submit" name="submit" value="canella" th:text="#{cancella.tuttiUtenti}">Cancella</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<footer>
+				<a href="/admin">Admin</a>
+			</footer>
+		</div>
+	</div>
+</body>
+</html>

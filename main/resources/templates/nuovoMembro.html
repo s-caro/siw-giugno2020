@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.progetto})">
+</head>
+<body>
+<header>
+</header>
+	<h1 th:text="#{header.nuovoMembro}">Aggiungi utente al progetto</h1>
+
+	<div>
+		<form th:action="@{'/aggiungiMembro/'+${progetto.id}}" method="POST">	
+			<table>
+				<tr>
+					<td>Username:</td>
+					<td><input type="text" required th:field="${nuovoMembro.username}" placeholder="username"/></td>		
+				</tr>
+				<tr>
+					<td><button class="myButton" type="submit" th:text="#{aggiungi.nuovoMembro}">Aggiungi</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

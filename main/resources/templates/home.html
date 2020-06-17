@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.home})">
+</head>
+<body>
+	<header>
+	</header>
+	<h1 th:text="#{pageTitle.utente} +', ' + ${utente.nome} + '!'"></h1>
+	<div class="div1">
+		<h4><a href="/progetti" th:text="#{home.progettiMiei}">I Miei Progetti</a></h4>
+		<h4><a href="/progetti/condivisi" th:text="#{home.progettiCondivisi}">Progetti condivisi con me</a></h4>
+		<h4><a href="/progetti/aggiungi" th:text="#{home.nuovoProgetto}">Crea Un Nuovo Progetto</a></h4>
+		<h4><a href="/infoUtente" th:text="#{home.profilo}">Profilo</a></h4>
+		<h4 th:if="${credentials.role == 'ADMIN'}"><a href="/admin">Admin Homepage</a></h4>
+		<h4><a href="/logout" th:text="#{home.logout}">Logout</a></h4>
+	</div>
+</body>
+</html>

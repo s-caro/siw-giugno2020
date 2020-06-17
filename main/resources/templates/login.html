@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form th:action="@{/login}" method="post">
+    <div><label> User Name : <input type="text" name="username" th:text="${credentials.username}"/> </label></div>
+    <div><label> Password: <input type="password" name="password" th:text="${credentials.password}"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
+</form>
+</body>
+</html>

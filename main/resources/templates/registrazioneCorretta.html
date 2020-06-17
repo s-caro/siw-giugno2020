@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.registrazioneCorretta})">
+</head>
+<body>
+<header></header>
+<div class="div1">
+	<h1 th:text="#{header.registrazioneCorretta}">Congratulazioni ti sei registrato</h1>
+	<h2 th:text="#{text.registrazioneCorretta}"></h2>
+	<h2><a href="/login"> login</a></h2>
+</div>
+</body>
+</html>

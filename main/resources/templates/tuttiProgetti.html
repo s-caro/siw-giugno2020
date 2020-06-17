@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.tuttiProgetti})">
+</head>
+<body>
+<header>
+</header>
+	<h1 th:text="#{pageTitle.tuttiProgetti}">Progetti</h1>
+	<div>
+		<table class="table2">
+			<thead>
+				<tr>
+					<th th:text="#{name.tuttiProgetti}">Nome</th>
+					<th th:text="#{header.descrizioneProgetto}">Descrizione</th>
+					<th th:text="#{creazione.tuttiProgetti}">DataCreazione</th>
+					<th th:text="#{proprietario.tuttiProgetti}">Proprietario</th>
+					<th th:text="#{cancella.tuttiProgetti}">Cancella</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each ="progetto : ${tuttiProgetti}">
+					<td th:text="${progetto.nome}"></td>
+					<td th:text="${progetto.descrizione}"></td>
+					<td th:text="${progetto.dataInizio}"></td>
+					<td th:text="${progetto.proprietario}"></td>
+					<td>
+						<form method="POST" th:action="@{/admin/progetti/{id}/delete(id=${progetto.id})}">
+							<button class="myButton" type="submit" name="submit" value="canella" th:text="#{cancella.tuttiProgetti}">Cancella</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<footer>
+				<a href="/admin">Admin</a>
+			</footer>
+		</div>
+	</div>
+</body>
+</html>

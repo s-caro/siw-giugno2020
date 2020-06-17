@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.infoUtente})">
+</head>
+<body>
+	<div>
+	<header>
+	</header>
+		<h1 th:text="#{header.infoUtente}"></h1>
+		<div class="div1">
+			<table class="table1">
+				<tr>
+					<td><h3>Username:</h3></td>
+					<td><h4 th:text="${credentials.username}"></h4></td>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{nome.infoUtente}">Nome</h3></td>
+					<td><h4 th:text="${utente.nome}"></h4></td>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{cognome.infoUtente}">Cognome</h3></td>
+					<td><h4 th:text="${utente.cognome}"></h4></td>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{ruolo.infoUtente}">Ruolo</h3></td>
+					<td><h4 th:text="${credentials.role}"></h4></td>
+				</tr>
+			</table>
+			<div>
+				<a th:href="@{/utente/modifica}">modifica</a>
+			</div>
+			<div>
+				<footer><a href="/home">Home</a></footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

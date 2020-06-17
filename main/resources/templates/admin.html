@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.admin})">
+</head>
+<body>
+<div>
+	<div>
+		<h1 th:text="#{pageTitle.admin} + ', Admin ' + ${utente.nome} + '!'"></h1>
+	</div>
+	<div>
+		<h4><a href="/admin/utenti" th:text="#{header.utenti}">Tutti gli utenti</a></h4>
+	</div>
+	<div>
+		<h4><a href="/admin/progetti" th:text="#{header.progetti}">Tutti i progetti</a></h4>
+	</div>
+	<div>
+		<footer>
+			<a href="/home">Home</a>
+		</footer>
+	</div>
+</div>
+</body>
+</html>

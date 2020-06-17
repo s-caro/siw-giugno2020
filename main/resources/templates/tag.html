@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.tag})">
+</head>
+<body>
+	<div>
+	<header>
+	</header>
+			<h1>Tag</h1>
+			<table class="table3">
+				<tr>
+					<td><h3 th:text="#{tag.nome}"></h3></td>
+					<td><h4 th:text="${tag.nome}">nome</h4></td>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{tag.colore}"></h3></td>
+					<td><h4 th:text="${tag.colore}">colore</h4></td>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{tag.descrizione}"></h3></td>
+					<td><h4 th:text="${tag.descrizione}">descrizione</h4></td>
+				</tr>
+			</table>
+
+		<div class="div2">
+			<div>
+				<footer>
+					<a th:href="@{'/progetto' + '/' + ${progetto.id}}" th:text="#{fondo.tag}">Progetto</a>
+				</footer>
+			</div>
+			<div>
+				<form method="POST" th:action="@{/tag/{id}/delete(id=${tag.id})}">
+					<button class="myButton" type="submit" name="submit" value="cancella" th:text="#{elimina.tag}">Elimina Task</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

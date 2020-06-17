@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.progetto})">
+</head>
+<body>
+	<div>
+	<header>
+	</header>
+		<h1 th:text="#{header.nuovoTag}"></h1>
+
+		<form th:action="@{'/progetto/tag/nuovo/'+ ${progetto.id}}" method="POST" th:object="${tag}">	
+			<table>
+				<tr>
+					<td th:text="#{tag.nome}">Nome:</td>
+					<td><input type="text" th:field="*{nome}"/></td>
+					<td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td th:text="#{tag.colore}">Colore:</td>
+					<td><input type="text" th:field="*{colore}"/></td>
+					<td th:if="${#fields.hasErrors('colore')}" th:errors="*{colore}" th:style="'color:red'"></td>	
+				</tr>
+				<tr>
+					<td th:text="#{tag.descrizione}">Descrizione:</td>
+					<td><input type="text" th:field="*{descrizione}"/></td>
+					<td th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}" th:style="'color:red'"></td>
+				</tr>
+			</table>
+			<div>
+				<button class="myButton" type="submit" th:text="#{tag.crea}">Crea</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

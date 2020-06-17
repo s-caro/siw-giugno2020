@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.progetto})">
+</head>
+<body>
+<header>
+</header>
+	<h1 th:text="#{header.nuovoProgetto}">Registrazione nuovo progetto</h1>
+
+	<div>
+		<form th:action="@{/progetti/aggiungi}" method="POST" th:object="${progetto}" class="form1">	
+			<table>
+				<tr>
+					<td th:text="#{nome.nuovoProgetto}">Nome:</td>
+					<td><input type="text" required th:field="*{nome}" placeholder="nome"/></td>
+					<td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" th:style="'color:red'"></td>				
+				</tr>
+				<tr>
+					<td th:text="#{descrizione.nuovoProgetto}">Descrizione:</td>
+					<td><input type="text" th:field="*{descrizione}" placeholder="descrizione"/></td>
+				</tr>		
+				<tr>
+					<td><button class="myButton" type="submit" th:text="#{aggiungi.nuovoProgetto}">Crea</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

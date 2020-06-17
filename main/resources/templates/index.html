@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.index})">
+
+</head>
+<body>
+	<div class="divIndex">
+		<table>
+			<tr>
+				<td><h2 th:text="#{login.text}">Possiedi già un account?</h2></td>
+			</tr>
+			<tr>
+				<td><button><a href="/login">Log in</a></button></td>
+			</tr>
+			<tr>
+				<td><h3 th:text="#{signup.text}">Non sei ancora registrato?</h3></td>
+			</tr>
+			<tr>
+				<td><button><a href="/utente/registrati" >Sign up</a></button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

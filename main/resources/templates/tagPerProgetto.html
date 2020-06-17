@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.tagDelProgetto})">
+</head>
+<body>
+<header>
+</header>
+	<h1 th:text="#{header.tagDelProgetto}">Tag assegnati al progetto</h1>
+	<div class="div1">
+		<ul>
+			<li th:each="tags : ${tag}">
+				<a th:href="@{'/task/assegnatags' + '/' + ${tags.id} + '/' + ${task.id}}" th:text="${tags.nome}">Tag</a>
+			</li>
+		</ul>
+		<div class="c1">
+			<a th:href="@{'/progetto' + '/' + ${progetto.id}}" th:text="#{task.fondo}">Progetto</a>
+		</div>
+	</div>
+</body>
+</html>

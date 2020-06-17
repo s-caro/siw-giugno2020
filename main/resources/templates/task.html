@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: headerfiles(title=#{title.task})">
+</head>
+<body>
+	<div>
+	<header>
+	</header>
+		<h1 th:text="#{header.task}"></h1>
+		<table class="table3">
+			<tr>
+				<td><h2 th:text="#{pageTitle.task}"></h2></td>
+				<td><h4 th:text="${task.nome}">nome</h4></td>
+			</tr>
+			<tr>
+				<td><h2 th:text="#{task.descrizione}"></h2></td>
+				<td><h4 th:text="${task.descrizione}">descrizione</h4></td>
+			</tr>
+		</table>
+		<div class="divTask1">
+			<table>
+				<tr th:if="${assegnato}">
+					<td><form th:action="@{'/task/assegnaTask' + '/' + ${task.id}}" method="POST">
+						<h3 th:text="#{task.assegna}">Assegna task ad un utente</h3>
+						<input type="text" th:field="${credentials.username}"/>
+						<div></div>
+						<button class="myButton" type="submit" th:text="#{task.assegnaButton}">aggiungi</button>
+					</form></td>
+				</tr>
+				<tr th:unless="${assegnato}">
+					<td><h3 th:text="#{task.assegnato}">Progetto assegnato a:</h3></td>
+					<td><h4 th:text="${assegnatario.nome}">utente</h4></td>
+				</tr>
+			</table>
+			<table>
+				<tr><td><h3>Tag</h3></td></tr>
+				<tr>
+					<td><ul>
+						<li th:each="tag : ${tags}">
+							<a th:href="@{'/tag' + '/' + ${tag.id} + '/' + ${progetto.id}}" th:text="${tag.nome}">Tag</a>
+						</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td><a th:href="@{'/task/tag/aggiungi/' + ${task.id}}" th:text="#{task.aggiungiTag}">Aggiungi Tag</a><td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><h3 th:text="#{task.commenti}">Commenti</h3></td>
+				</tr>
+				<tr>
+					<td><ul>
+						<li th:each="comm : ${commenti}">
+							<span th:text="${comm.contenuto}"></span> 
+						</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td><h3 th:text="#{task.aggiungiCommento}">Aggiungi Commento</h3></td>
+				</tr>
+				<tr>
+					<td><form method="POST" th:action="@{/commento/{id}(id=${task.id})}">
+						<table>
+							<tr>
+								<td><textarea th:field="${commento.contenuto}"></textarea></td>
+								<td th:if="${#fields.hasErrors('commento.contenuto')}"
+								th:errors="${commento.contenuto}" th:style="'color:red'"></td>
+							</tr>
+						</table>
+						<button class="myButton" type="submit" name="submit" value="commento" th:text="#{task.commenta}">Commenta</button>
+					</form></td>
+				</tr>
+			</table>
+		</div>
+		<div class="divTask2">
+			<div>
+				<a th:href="@{'/task/modifica/' + ${task.id}}">modifica</a>
+			</div>
+			<div>
+				<form method="POST" th:action="@{/task/{id}/completato(id=${task.id})}">
+					<button class="myButton" type="submit" name="submit" value="cancella" th:text="#{task.completato}">Completato</button>
+				</form>
+			</div>
+			<div>
+				<form method="POST" th:action="@{/task/{id}/delete(id=${task.id})}">
+					<button class="myButton" type="submit" name="submit" value="cancella" th:text="#{task.elimina}">Elimina task</button>
+				</form>
+			</div>
+			<div>
+				<a th:href="@{'/progetto' + '/' + ${progetto.id}}" th:text="#{task.fondo}">Progetto</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
