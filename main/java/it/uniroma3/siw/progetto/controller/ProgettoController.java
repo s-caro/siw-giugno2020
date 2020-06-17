@@ -151,6 +151,11 @@ public class ProgettoController {
 	
 	@RequestMapping(value="/progetto/modifica/{id}", method = RequestMethod.GET)
 	public String modificaProgetto(@PathVariable("id")Long id, Model model) {
+		Progetto p = progettoService.getProgetto(id);
+		Utente u = sessionData.getLoggedUser();
+		if(!(u.equals(p.getProprietario()))) {
+			return "redirect:/progetto/" + p.getId();
+		}
 		model.addAttribute("idProgetto", id);
 		Progetto progettoNuovo = new Progetto();
 		model.addAttribute("progettoNuovo", progettoNuovo);
