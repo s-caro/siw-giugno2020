@@ -36,7 +36,7 @@ public class Utente {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Progetto> progettiPosseduti;
 	
-	@ManyToMany(mappedBy = "membri", targetEntity = Progetto.class) 
+	@ManyToMany(mappedBy = "membri") 
 	private List<Progetto> progettiVisibili;
 	
 
