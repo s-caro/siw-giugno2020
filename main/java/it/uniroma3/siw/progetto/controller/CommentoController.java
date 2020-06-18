@@ -53,6 +53,7 @@ public class CommentoController {
 			commento = commentoService.saveCommento(commento);
 			task = taskService.aggiungiCommento(task, commento);
 		}
+		model.addAttribute("tags", tagService.findByTask(task));
 		model.addAttribute("credentials", new Credentials());
 		model.addAttribute("task",task);
 		boolean assegnato = (task.getAssegnatario()==null);
