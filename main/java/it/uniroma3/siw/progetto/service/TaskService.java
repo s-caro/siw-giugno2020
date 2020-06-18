@@ -42,7 +42,8 @@ public class TaskService {
 	public void deleteTask(Task task) {
 		Progetto p = task.getProgetto();
 		p.getTask().remove(task);
-		for (Tag t : task.getTag()) {
+		List<Tag> tag = tagService.findByTask(task);
+		for (Tag t : tag) {
 			t.getTask().remove(task);
 		}
 		this.taskRepository.delete(task);
@@ -79,5 +80,10 @@ public class TaskService {
 			lista.add(u);
 		}
 		return lista;
+	}
+	
+	@Transactional
+	public List<Task> findByProgetto(Progetto progetto){
+		return this.taskRepository.findByProgetto(progetto);
 	}
 }
