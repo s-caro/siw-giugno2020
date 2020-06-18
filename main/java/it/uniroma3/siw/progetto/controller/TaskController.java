@@ -220,7 +220,7 @@ public class TaskController {
 			model.addAttribute("commento", commento);
 			List<Commento> commenti = commentoService.findByTask(taskVecchio);
 			model.addAttribute("commenti", commenti);
-			model.addAttribute("tags", tagService.findByTask(task));
+			model.addAttribute("tags", tagService.findByTask(taskVecchio));
 			return "task.html";
 		}
 		else {
