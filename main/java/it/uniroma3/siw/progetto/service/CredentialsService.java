@@ -25,6 +25,12 @@ public class CredentialsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private ProgettoService progettoService;
+	
+	@Autowired
+	private TaskService taskService;
+	
 	@Transactional
 	public Credentials getCredentials(Long id) {
 		Optional<Credentials> result = this.credentialsRepository.findById(id);
@@ -65,9 +71,11 @@ public class CredentialsService {
 	public void cancellaCredenziali(String username) {
 		Credentials c = this.credentialsRepository.findByUsername(username).get();
 		Utente u = c.getUtente();
-		for (Progetto p : u.getProgettiVisibili()){
+		List<Progetto> progettiVisibili = progettoService.progettiPerMembro(u);
+		for (Progetto p : progettiVisibili){
 			p.getMembri().remove(u);
-			for(Task t : p.getTask()) {
+			List<Task> task = taskService.findByProgetto(p);
+			for(Task t : task) {
 				if(u.equals(t.getAssegnatario()))
 					t.setAssegnatario(null);
 			}
