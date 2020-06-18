@@ -39,6 +39,9 @@ public class CommentoController {
 	@Autowired
 	private CommentoValidator commentoValidator;
 	
+	@Autowired
+	private TagService tagService;
+	
 	@RequestMapping(value="/commento/{id}", method = RequestMethod.POST)
 	public String aggiungiCommento(@PathVariable("id")Long id, @ModelAttribute("commento")Commento commento, 
 			Model model, BindingResult bindingResult) {
