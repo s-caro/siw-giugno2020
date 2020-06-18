@@ -120,6 +120,7 @@ public class TagController {
 		Commento comm = new Commento();
 		model.addAttribute("commento", comm);
 		List<Commento> commenti = commentoService.findByTask(task);
+		model.addAttribute("tags", tagService.findByTask(task));
 		model.addAttribute("commenti", commenti);
 		return "task.html";
 	}
