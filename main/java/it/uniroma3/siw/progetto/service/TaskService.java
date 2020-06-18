@@ -25,6 +25,9 @@ public class TaskService {
 	@Autowired
 	private TaskRepository taskRepository;
 	
+	@Autowired
+	private TagService tagService;
+	
 	
 	@Transactional
 	public Task getTask(Long id) {
