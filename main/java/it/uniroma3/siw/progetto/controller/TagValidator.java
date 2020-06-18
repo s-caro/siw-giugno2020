@@ -36,7 +36,7 @@ public class TagValidator implements Validator{
 			errors.rejectValue("nome", "size");
 		
 		if(colore.isEmpty()){
-			errors.rejectValue("nome", "required");
+			errors.rejectValue("colore", "required");
 		}
 		
 		if(descrizione.length() > MAX_DESCRIPTION_LENGTH)
