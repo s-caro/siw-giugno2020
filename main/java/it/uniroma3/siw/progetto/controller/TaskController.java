@@ -105,6 +105,7 @@ public class TaskController {
 		model.addAttribute("progetto", task.getProgetto());
 		Commento commento = new Commento();
 		model.addAttribute("commento", commento);
+		model.addAttribute("tags", tagService.findByTask(task));
 		List<Commento> commenti = commentoService.findByTask(task);
 		model.addAttribute("commenti", commenti);
 		return "task.html";
@@ -121,6 +122,7 @@ public class TaskController {
 		model.addAttribute("commento", commento);
 		List<Commento> commenti = commentoService.findByTask(task);
 		model.addAttribute("commenti", commenti);
+		model.addAttribute("tags", tagService.findByTask(task));
     	if(cred != null) {
     		Utente membro = cred.getUtente();
 			if(u.equals(task.getProgetto().getProprietario())) {
@@ -218,6 +220,7 @@ public class TaskController {
 			model.addAttribute("commento", commento);
 			List<Commento> commenti = commentoService.findByTask(taskVecchio);
 			model.addAttribute("commenti", commenti);
+			model.addAttribute("tags", tagService.findByTask(task));
 			return "task.html";
 		}
 		else {
