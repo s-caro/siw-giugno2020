@@ -16,20 +16,19 @@ public class UtenteValidator implements Validator {
 	@Override
 	public void validate(Object o, Errors errors) {
 		Utente utente = (Utente) o;
-		String firstName = utente.getNome().trim();
-		String lastName = utente.getCognome().trim();
-		
-		if(firstName.isEmpty()) {
+		String nome = utente.getNome().trim();
+		String cognome = utente.getCognome().trim();
+		if(nome.isEmpty()) {
 			errors.rejectValue("nome", "required");
 		}
-		else if(firstName.length() < MIN_NAME_LENGTH || firstName.length() > MAX_NAME_LENGTH) {
+		else if(nome.length() < MIN_NAME_LENGTH || nome.length() > MAX_NAME_LENGTH) {
 			errors.rejectValue("nome", "size");
 		}
 		
-		if(lastName.isEmpty()) {
+		if(cognome.isEmpty()) {
 			errors.rejectValue("cognome", "required");
 		}
-		else if(lastName.length() < MIN_NAME_LENGTH || lastName.length() > MAX_NAME_LENGTH) {
+		else if(cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH) {
 			errors.rejectValue("cognome", "size");
 		}
 	}
