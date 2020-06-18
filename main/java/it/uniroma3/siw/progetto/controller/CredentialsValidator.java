@@ -46,5 +46,17 @@ public class CredentialsValidator implements Validator{
 			errors.rejectValue("password", "size");
 		}
 	}
+	
+	public void validateModifica(Object o, Errors errors) {
+		
+		Credentials credentials = (Credentials) o;
+		String password = credentials.getPassword().trim();
+		if(password.isEmpty()) {
+			errors.rejectValue("password", "required");
+		}
+		else if(password.length() < MIN_PASSWORD_LENGTH || password.length() > MAX_PASSWRD_LENGTH) {
+			errors.rejectValue("password", "size");
+		}
+	}
 
 }
