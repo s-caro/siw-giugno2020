@@ -11,4 +11,5 @@ import it.uniroma3.siw.progetto.model.Task;
 @Repository
 public interface TaskRepository extends CrudRepository<Task, Long> {
 	List<Task> findByProgetto (Progetto progetto);
+	List<Task> findByTag(Tag tag);
 }
