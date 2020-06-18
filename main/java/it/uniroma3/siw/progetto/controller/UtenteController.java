@@ -27,6 +27,11 @@ public class UtenteController {
 	@Autowired
 	private CredentialsService credentialsService;
 	
+	@Autowired
+	private UtenteValidator utenteValidator;
+	
+	@Autowired
+	private CredentialsValidator credentialsValidator;
 
     
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
@@ -62,17 +67,22 @@ public class UtenteController {
     }
     
     @RequestMapping(value="/modifica/utenteFatta", method = RequestMethod.POST)
-    public String modificaFatta(@ModelAttribute("utente")Utente utente,
-    		@ModelAttribute("credentials")Credentials credenziali, Model model) {
+    public String modificaFatta(@ModelAttribute("userForm")Utente utente, BindingResult bindingUtente,
+    		@ModelAttribute("credentialsForm")Credentials credenziali, BindingResult bindinCredentials, Model model) {
     		Utente utenteLoggato = this.sessionData.getLoggedUser();
     		Credentials credentials = this.sessionData.getLoggedCredentials();
-    		utenteLoggato.setNome(utente.getNome());
-    		utenteLoggato.setCognome(utente.getCognome());
-    		this.utenteService.saveUtente(utenteLoggato);
-    		credentials.setPassword(credenziali.getPassword());
-    		this.credentialsService.saveCredentials(credentials);
-        	model.addAttribute("utente", utenteLoggato);
-        	model.addAttribute("credentials", credentials);
-        	return "infoUtente.html";
+    		this.utenteValidator.validate(utente, bindingUtente);
+    		this.credentialsValidator.validateModifica(credenziali, bindinCredentials);
+    		if(!bindingUtente.hasErrors() && !bindinCredentials.hasErrors()) {
+        		utenteLoggato.setNome(utente.getNome());
+        		utenteLoggato.setCognome(utente.getCognome());
+        		credentials.setPassword(credenziali.getPassword());
+	    		this.utenteService.saveUtente(utenteLoggato);
+	    		this.credentialsService.saveCredentials(credentials);
+	        	model.addAttribute("utente", utenteLoggato);
+	        	model.addAttribute("credentials", credentials);
+	        	return "infoUtente.html";
+    		}
+        	return "modificaUtente.html";
     }
 }
